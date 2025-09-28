@@ -14,5 +14,19 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  app:
+    build: .
+    image: basic-todo-app:latest
+    container_name: todo_app
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/todo
+      SPRING_DATASOURCE_USERNAME: ali
+      SPRING_DATASOURCE_PASSWORD: 12345
+
 volumes:
   pgdata:

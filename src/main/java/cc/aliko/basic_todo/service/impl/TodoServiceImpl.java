@@ -27,7 +27,7 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public TodoResponse create(TodoRequest request) {
-        Optional<Todo> existing = repository.findByTitle(request.getTitle());
+        Optional<Todo> existing = repository.findByTitle(request.title());
         if (existing.isPresent()) {
             throw new DuplicateException("Bu başlığa sahip bir ToDo zaten var");
         }
@@ -60,8 +60,8 @@ public class TodoServiceImpl implements TodoService {
         }
 
         Todo existing = repository.findById(id).get();
-        existing.setTitle(request.getTitle());
-        existing.setCompleted(request.isCompleted());
+        existing.setTitle(request.title());
+        existing.setCompleted(request.completed());
 
         Todo updated = repository.save(existing);
         return mapper.toResponse(updated);
