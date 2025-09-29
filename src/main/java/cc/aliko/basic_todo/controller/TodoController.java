@@ -7,17 +7,16 @@ import cc.aliko.basic_todo.service.TodoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import lombok.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/todos")
+@RequiredArgsConstructor
 public class TodoController {
 
     private final TodoService service;
-
-    public TodoController(TodoService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<TodoResponse> create(@RequestBody TodoRequest request) {

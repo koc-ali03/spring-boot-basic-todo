@@ -13,17 +13,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import lombok.*;
 
 @Service
+@RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
 
     private final TodoRepository repository;
     private final TodoMapper mapper;
-
-    public TodoServiceImpl(TodoRepository repository, TodoMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
 
     @Override
     public TodoResponse create(TodoRequest request) {
